@@ -449,17 +449,20 @@ BANNER SECTION
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 38px;
+    color: #00425f;
   }
   .reserve__section--heading-2{
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0em;
     font-weight: 400;
+  
   }
   .reserve__section--paragraph{
     font-size: 18px;
     font-weight: 400;
     line-height: 2.4rem;
+    color:#00425f;
   }
   .inspiration--section__inner{
     max-width: 1280px;
@@ -573,6 +576,7 @@ BANNER SECTION
   .reserve__section{
     max-width: 600px;
     margin: 0 auto;
+    padding-bottom: 20px;
   
   }
   .full-height {
