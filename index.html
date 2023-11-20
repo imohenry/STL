@@ -137,8 +137,8 @@
           <form
             action=""
             class="form__section"
-            name="fintechday"
-            id="fintechday"
+            name="stl_webinar"
+            id="stl_webinar"
           >
             <div class="form__section--inner form__section--dual">
               <div class="input__section">
@@ -208,7 +208,7 @@
                   type="text"
                   class="input__field"
                   id="organisation"
-                  name="company"
+                  name="organisation"
                 />
               </div>
             </div>
@@ -233,8 +233,8 @@
                   <input
                     type="text"
                     class="input__field"
-                    id="designation"
-                    name="designation"
+                    id="mvno_tier"
+                    name="mvno_tier"
                     required
                   />
                 </div>
@@ -248,8 +248,8 @@
                 <input
                   type="text"
                   class="input__field"
-                  id="country"
-                  name="country"
+                  id="pressing_questions"
+                  name="pressing_questions"
                 />
               </div>
             </div>
@@ -308,7 +308,11 @@
         </div>
       </section>
 
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="//cdnt.netcoresmartech.com/smartechclient.js"></script>
     <!-- Timer -->
     <script>
         // Countdown Timer by Flowbase
@@ -349,5 +353,53 @@
     
             }, 1000);
         </script>
+
+<script>
+  let form = document.forms["stl_webinar"];
+
+  $("#submitButton").on("click", function (e) {
+    e.preventDefault();
+    let firstname = document.getElementById("firstName").value;
+    let lastname = document.getElementById("lastName").value;
+    let email = document.getElementById("email").value;
+    let phone_number = document.getElementById("phoneNumber").value;
+    let company = document.getElementById("organisation").value;
+    let industry = document.getElementById("designation").value;
+    let country = document.getElementById("mvno_tier").value;
+    let state = document.getElementById("pressing_questions").value;
+    let seniority = document.getElementById("other_comments").value;
+    // let designation = document.getElementById("designation").value;
+
+    if (
+      firstname == "" ||
+      lastname == "" ||
+      email == "" ||
+      phone_number == "" ||
+      organisation == "" ||
+      mvno_tier == "" ||
+      designation == "" ||
+      pressing_questions == "" ||
+      other_comments == "" 
+      // privacy == false
+    ) {
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill the form fields",
+        type: "danger",
+      });
+    } else {
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwGpq8PoTDoUXFwat-8v3DoICxz2fJEhXtUZJZdoIw-WxB3GkwF2fstTMBBQGOCrP61hA/exec";
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then(
+          Swal.fire({
+            icon: "success",
+            html: "We've received your RSVP! <br><br> We appreciate you taking the time to RSVP for Systegra Tecnologies Limited Webinar. Your registration has been recorded and we will send you a confirmation email shortly after validation.  Please be sure to check your spam folder if you do not receive a confirmation email within 48 hours",
+          })
+        )
+        .then(form.reset());
+    }
+  });
+</script>
 </body>
 </html>
